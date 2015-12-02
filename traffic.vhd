@@ -69,7 +69,6 @@ begin
 						 state <= s4;
 						 count <= count + 1;
 					 else
-						 aptbtn <= false;
 						 state <= s5;
 						 count <= X"0";
 					 end if;
@@ -102,8 +101,11 @@ begin
 	
 	C3: process(btn,aptbtn)
 	begin
-		if btn = '1' then
+		if btn = '1' and state /= s4 then
 			aptbtn <= true;
+		end if;
+		if state = s4 then
+			aptbtn <= false;
 		end if;
 	end process;
 end traffic; 
